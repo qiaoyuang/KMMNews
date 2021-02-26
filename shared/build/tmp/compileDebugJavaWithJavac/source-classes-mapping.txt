@@ -1,0 +1,2 @@
+com/qiaoyuang/kmmnews/shared/BuildConfig.java
+ com.qiaoyuang.kmmnews.shared.BuildConfig
