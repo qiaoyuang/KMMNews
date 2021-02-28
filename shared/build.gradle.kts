@@ -2,13 +2,13 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
     kotlin("multiplatform")
-    kotlin("plugin.serialization") version "1.4.30"
+    kotlin("plugin.serialization") version "1.4.31"
     kotlin("kapt")
     id("com.android.library")
     id("kotlin-parcelize")
 }
 
-val kotlinVersion = "1.4.30"
+val kotlinVersion = "1.4.31"
 val coroutinesVersion = "1.4.2"
 val serializationVersion = "1.0.1"
 val ktorVersion = "1.5.1"
