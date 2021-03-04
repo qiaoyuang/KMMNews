@@ -3,8 +3,14 @@ import shared
 
 
 struct ContentView: View {
+    
     var body: some View {
-        Text(getText()).padding()
+        VStack(alignment: .leading) {
+            Text("Title").font(.title)
+            Image("turtlerock")
+            Text("Joshua Tree National Park").font(.subheadline)
+        }
+        .padding()
     }
 }
 
@@ -14,15 +20,26 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
+
+struct NewsSummaryRow: View {
+    
+    var newsSummary: NewsSummary
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text(newsSummary.title).font(.title)
+            Image(newsSummary.imageUrl)
+            Text(newsSummary.summary).font(.subheadline)
+            Text(newsSummary.date).font(.subheadline)
+        }
+        
+    }
+}
+
 func getNetwork() -> Void {
     NetworkRequest.init().getNewsSummaryList { (list: [NewsSummary]?, error: Error?) in
         list?.forEach({ (summary: NewsSummary) in
             print(summary.title)
         })
     }
-}
-
-func getText() -> String {
-    getNetwork()
-    return "第一个 Text"
 }

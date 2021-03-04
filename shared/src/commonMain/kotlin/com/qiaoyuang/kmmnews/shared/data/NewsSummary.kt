@@ -1,7 +1,7 @@
 package com.qiaoyuang.kmmnews.shared.data
 
 import com.qiaoyuang.kmmnews.shared.Parcelable
-// import kotlinx.parcelize.Parcelize
+import com.qiaoyuang.kmmnews.shared.Parcelize
 import kotlinx.serialization.Serializable
 
 /**
@@ -9,7 +9,7 @@ import kotlinx.serialization.Serializable
  * @author yaqiao
  */
 
-// @Parcelize
+@Parcelize
 @Serializable
 data class NewsSummary(
     val id: String = "",
