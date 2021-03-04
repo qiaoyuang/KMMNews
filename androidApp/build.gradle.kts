@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     kotlin("android")
     id("kotlin-parcelize")
+    id("kotlin-android")
 }
 
 val lifecycle_version = "2.2.0"
@@ -28,6 +29,7 @@ dependencies {
 
     // 图片加载
     implementation("io.coil-kt:coil:1.1.1")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:${rootProject.extra["kotlin_version"]}")
 }
 
 android {

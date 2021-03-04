@@ -33,7 +33,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 // implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.1.1")
-                api("org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1")
+                api("org.jetbrains.kotlinx:kotlinx-serialization-json:1.1.0")
                 api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2-native-mt")
 
                 // Ktor
@@ -55,7 +55,7 @@ kotlin {
                 implementation("io.ktor:ktor-client-okhttp:$ktorVersion")
 
                 // Square
-                implementation("com.squareup.okio:okio:2.9.0")
+                implementation("com.squareup.okio:okio:2.10.0")
                 implementation("com.squareup.okhttp3:okhttp:4.9.0")
             }
         }
