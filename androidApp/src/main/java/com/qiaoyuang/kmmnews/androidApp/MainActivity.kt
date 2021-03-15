@@ -37,8 +37,7 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launch(Dispatchers.IO) {
             NetworkRequest.getNewsSummaryList()?.let {
                 withContext(Dispatchers.Main) {
-                    val newsAdapter = NewsAdapter(this@MainActivity, it, lifecycle, lifecycleScope)
-                    recyclerView.adapter = newsAdapter
+                    recyclerView.adapter = NewsAdapter(this@MainActivity, it, lifecycle, lifecycleScope)
                 }
             }
         }
@@ -61,7 +60,7 @@ class MainActivity : AppCompatActivity() {
             }
             itemView.setOnClickListener {
                 // 启动新闻详情页
-                val intent = Intent().apply {
+                val intent = Intent(context, NewsContentActivity::class.java).apply {
                     putExtra(NewsContentActivity.KEY_NEWS_SUMMARY, newsSummary)
                 }
                 context.startActivity(intent)

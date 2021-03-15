@@ -2,8 +2,10 @@ package com.qiaoyuang.kmmnews.androidApp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.lifecycleScope
 import com.qiaoyuang.kmmnews.shared.NetworkRequest
 import com.qiaoyuang.kmmnews.shared.data.NewsSummary
@@ -28,6 +30,9 @@ class NewsContentActivity : AppCompatActivity() {
         val tvContent = findViewById<TextView>(R.id.tv_content)
         val tvEditor = findViewById<TextView>(R.id.tv_editor)
         val tvDate = findViewById<TextView>(R.id.tv_date)
+        val toolBar = findViewById<Toolbar>(R.id.tool_bar)
+        setSupportActionBar(toolBar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         intent.getParcelableExtra<NewsSummary>(KEY_NEWS_SUMMARY)?.let {
             lifecycleScope.launch {
                 NetworkRequest.getNewsContent(it)?.run {
@@ -40,6 +45,13 @@ class NewsContentActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> onBackPressed()
+        }
+        return super.onOptionsItemSelected(item)
     }
 
 }
