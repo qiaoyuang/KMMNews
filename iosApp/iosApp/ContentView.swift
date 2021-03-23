@@ -5,12 +5,11 @@ import shared
 struct ContentView: View {
     
     var body: some View {
-        VStack(alignment: .leading) {
-            Text("Title").font(.title)
-            Image("turtlerock")
-            Text("Joshua Tree National Park").font(.subheadline)
+        NetworkRequest.init().getNewsSummaryList { (list: [NewsSummary]?, error: Error?) in
+            list?.forEach({ (summary: NewsSummary) in
+                NewsSummaryRow(newsSummary: <#T##NewsSummary#>)
+            })
         }
-        .padding()
     }
 }
 
@@ -33,6 +32,14 @@ struct NewsSummaryRow: View {
             Text(newsSummary.date).font(.subheadline)
         }
         
+    }
+}
+
+extension NewsSummary: Identifiable {
+    public var id: String {
+        get {
+            self.id
+        }
     }
 }
 
