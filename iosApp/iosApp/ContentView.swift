@@ -47,12 +47,14 @@ struct NewsSummaryRow: View {
     let placeholderOne: UIImage = UIImage()
     
     var body: some View {
-        VStack(alignment: .leading) {
-            Text(newsSummary.title).font(.title)
-            Image(uiImage: self.remoteImage ?? placeholderOne)
-                        .onAppear(perform: fetchRemoteImage)
-            Text(newsSummary.summary).font(.subheadline)
-            Text(newsSummary.date).font(.subheadline)
+        NavigationLink(destination: NewsContentView(newsSummary: newsSummary)) {
+            VStack(alignment: .leading) {
+                Text(newsSummary.title).font(.title)
+                Image(uiImage: self.remoteImage ?? placeholderOne)
+                            .onAppear(perform: fetchRemoteImage)
+                Text(newsSummary.summary).font(.subheadline)
+                Text(newsSummary.date).font(.subheadline)
+            }
         }
     }
     
@@ -69,10 +71,10 @@ struct NewsSummaryRow: View {
 }
 
 extension NewsSummary: Identifiable {
+    
     public var id: String {
         get {
             self.title
         }
     }
 }
-
