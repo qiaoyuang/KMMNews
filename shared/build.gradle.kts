@@ -2,15 +2,15 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
     kotlin("multiplatform")
-    kotlin("plugin.serialization") version "1.4.31"
+    kotlin("plugin.serialization") version "1.4.32"
     kotlin("kapt")
     id("com.android.library")
     id("kotlin-parcelize")
 }
 
-val kotlinVersion = "1.4.31"
-val coroutinesVersion = "1.4.2"
-val serializationVersion = "1.0.1"
+val kotlinVersion = "1.4.32"
+val coroutinesVersion = "1.4.3"
+val serializationVersion = "1.1.0"
 val ktorVersion = "1.5.1"
 
 kotlin {
@@ -34,7 +34,7 @@ kotlin {
             dependencies {
                 // implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.1.1")
                 api("org.jetbrains.kotlinx:kotlinx-serialization-json:1.1.0")
-                api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2-native-mt")
+                api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.3-native-mt")
 
                 // Ktor
                 implementation("io.ktor:ktor-client-core:$ktorVersion")
@@ -49,7 +49,7 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-                api("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.2-native-mt")
+                api("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.3-native-mt")
 
                 // Ktor
                 implementation("io.ktor:ktor-client-okhttp:$ktorVersion")
@@ -78,7 +78,6 @@ kotlin {
 android {
     compileSdkVersion(30)
     buildToolsVersion("30.0.3")
-    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     defaultConfig {
         minSdkVersion(23)
         targetSdkVersion(30)
@@ -86,13 +85,6 @@ android {
         versionName = "1.0"
         multiDexEnabled = true
         testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments(mutableMapOf("room.schemaLocation" to "$projectDir/schemas",
-                    "room.incremental" to "true",
-                    "room.expandProjection" to "true"))
-            }
-        }
     }
     buildTypes {
         getByName("release") {

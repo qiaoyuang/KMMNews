@@ -49,24 +49,31 @@ struct NewsSummaryRow: View {
     var body: some View {
         NavigationLink(destination: NewsContentView(newsSummary: newsSummary)) {
             VStack(alignment: .leading) {
-                Text(newsSummary.title).font(.title)
+                Text(newsSummary.title)
+                    .font(.title)
                 Image(uiImage: self.remoteImage ?? placeholderOne)
-                            .onAppear(perform: fetchRemoteImage)
-                Text(newsSummary.summary).font(.subheadline)
-                Text(newsSummary.date).font(.subheadline)
+                    .resizable()
+                    .onAppear(perform: fetchRemoteImage)
+                    .frame(width: 384, height: 256)
+                Text(newsSummary.summary)
+                    .font(.subheadline)
+                Text(newsSummary.date)
+                    .font(.footnote)
+                    .frame(alignment: .trailing)
+                    .padding([.top], 10)
             }
         }
     }
     
     func fetchRemoteImage() {
-        guard let url = URL(string: newsSummary.imageUrl) else { return } //初始化一个字符串常量，作为网络图片的地址
-        URLSession.shared.dataTask(with: url){ (data, response, error) in //执行URLSession单例对象的数据任务方法，以下载指定的图片
-            if let image = UIImage(data: data!){
-                self.remoteImage = image //当图片下载成功之后，将下载后的数据转换为图像，并存储在remoteImage属性中
+        guard let url = URL(string: newsSummary.imageUrl) else { return }
+        URLSession.shared.dataTask(with: url){ (data, response, error) in
+            if let image = UIImage(data: data!) {
+                self.remoteImage = image
             } else {
-                print(error ?? "") //如果图片下载失败之后，则在控制台输出错误信息
+                print(error ?? "")
             }
-        }.resume() //通过执行resume方法，开始下载指定路径的网络图片
+        }.resume()
     }
 }
 

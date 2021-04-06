@@ -15,16 +15,31 @@ struct NewsContentView: View {
     
     @ObservedObject var fetcher: NewsContentFetcher
     
+    @State private var remoteImage : UIImage? = nil
+    let placeholderOne: UIImage = UIImage()
+    
     var body: some View {
         NavigationView {
             ScrollView(.vertical) {
-                VStack(alignment: .leading) {
-                    Text(fetcher.newsContent.title).font(.title)
-                    Text(fetcher.newsContent.summary).font(.subheadline)
-                    // Image()
+                VStack(alignment: .center) {
+                    Text(fetcher.newsContent.title)
+                        .font(.title)
+                        .padding([.top, .bottom], 20)
+                    Text(fetcher.newsContent.summary)
+                        .font(.subheadline)
+                        .padding([.leading, .trailing], 20)
+                    Image(uiImage: self.remoteImage ?? placeholderOne)
+                        .resizable()
+                        .onAppear(perform: fetchRemoteImage)
+                        .frame(width: 384, height: 256)
                     Text(fetcher.newsContent.content)
+                        .font(.body)
+                        .padding([.top, .bottom, .leading, .trailing], 10)
                     Text(fetcher.newsContent.editor)
+                        .font(.footnote)
+                        .padding([.top], 10)
                     Text(fetcher.newsContent.date)
+                        .font(.footnote)
                 }
             }.navigationBarTitle("新闻详情", displayMode: .inline)
         }
@@ -33,6 +48,17 @@ struct NewsContentView: View {
     init(newsSummary: NewsSummary) {
         self.newsSummary = newsSummary
         fetcher = NewsContentFetcher(newsSummary: newsSummary)
+    }
+    
+    func fetchRemoteImage() {
+        guard let url = URL(string: newsSummary.imageUrl) else { return }
+        URLSession.shared.dataTask(with: url){ (data, response, error) in
+            if let image = UIImage(data: data!) {
+                self.remoteImage = image
+            } else {
+                print(error ?? "")
+            }
+        }.resume()
     }
     
 }
