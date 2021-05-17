@@ -13,7 +13,7 @@
       android:layout_width="match_parent"
       android:layout_height="?attr/actionBarSize"
       app:title="Kotlin 新闻"
-      android:background="@color/blue1"/>
+      android:background="@color/deepWhite"/>
 
   <androidx.recyclerview.widget.RecyclerView
       android:id="@+id/rv_news"
