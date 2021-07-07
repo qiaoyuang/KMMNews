@@ -12,6 +12,7 @@ import kotlinx.coroutines.Dispatchers
 
 /**
  * Coil 配置
+ * @author yaqiao
  */
 
 fun ImageRequest.Builder.getCoilDefaultConfig(): ImageRequest.Builder {

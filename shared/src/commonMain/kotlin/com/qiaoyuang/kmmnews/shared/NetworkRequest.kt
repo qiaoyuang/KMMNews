@@ -6,6 +6,7 @@ import io.ktor.client.request.*
 
 /**
  * 网络请求管理器
+ * @author yaqiao
  */
 
 object NetworkRequest {

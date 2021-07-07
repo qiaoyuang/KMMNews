@@ -23,6 +23,7 @@ import kotlinx.coroutines.withContext
 
 /**
  * 首页（新闻列表）
+ * @author yaqiao
  */
 
 class MainActivity : AppCompatActivity() {
@@ -34,11 +35,9 @@ class MainActivity : AppCompatActivity() {
             itemAnimator = DefaultItemAnimator()
             layoutManager = LinearLayoutManager(this@MainActivity)
         }
-        lifecycleScope.launch(Dispatchers.IO) {
+        lifecycleScope.launch {
             NetworkRequest.getNewsSummaryList()?.let {
-                withContext(Dispatchers.Main) {
-                    recyclerView.adapter = NewsAdapter(this@MainActivity, it, lifecycle, lifecycleScope)
-                }
+                recyclerView.adapter = NewsAdapter(this@MainActivity, it, lifecycle, lifecycleScope)
             }
         }
     }
