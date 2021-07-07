@@ -5,21 +5,21 @@ plugins {
     id("kotlin-android")
 }
 
-val lifecycle_version = "2.2.0"
+val lifecycle_version = "2.3.0"
 
 dependencies {
     implementation(project(":shared"))
 
     // AndroidX
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
-    implementation("androidx.appcompat:appcompat:1.2.0")
-    implementation("com.google.android.material:material:1.3.0")
-    implementation("androidx.recyclerview:recyclerview:1.1.0")
+    implementation("androidx.appcompat:appcompat:1.3.0")
+    implementation("com.google.android.material:material:1.4.0")
+    implementation("androidx.recyclerview:recyclerview:1.2.1")
     implementation("androidx.cardview:cardview:1.0.0")
     implementation("androidx.constraintlayout:constraintlayout:2.0.4")
 
     // KTX
-    implementation("androidx.core:core-ktx:1.3.2")
+    implementation("androidx.core:core-ktx:1.6.0")
 
     // Arch
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")

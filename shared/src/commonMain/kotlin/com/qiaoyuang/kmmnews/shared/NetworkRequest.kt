@@ -10,19 +10,17 @@ import io.ktor.client.request.*
 
 object NetworkRequest {
 
-    private const val URL_GET_NEWS_LIST = "http://localhost:8080/news"
+    private const val BASE_URL = "http://localhost:8080/news"
 
     suspend fun getNewsSummaryList(): List<NewsSummary>? = try {
-        CLIENT.get(URL_GET_NEWS_LIST)
+        CLIENT.get(BASE_URL)
     } catch (e: Exception) {
         println(e.message)
         null
     }
 
-    private const val URL_GET_NEWS_CONTENT = "http://localhost:8080/news"
-
     suspend fun getNewsContent(newsSummary: NewsSummary): NewsContent? = try {
-        CLIENT.post(URL_GET_NEWS_CONTENT) {
+        CLIENT.post(BASE_URL) {
             headers["Content-Type"] = "application/json"
             body = newsSummary
         }

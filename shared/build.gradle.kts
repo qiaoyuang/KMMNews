@@ -56,7 +56,8 @@ kotlin {
 
                 // Square
                 implementation("com.squareup.okio:okio:2.10.0")
-                implementation("com.squareup.okhttp3:okhttp:4.9.0")
+                implementation("com.squareup.okhttp3:okhttp:4.9.1")
+                implementation("com.tencent:mmkv-static:1.2.10")
             }
         }
         val androidTest by getting {
