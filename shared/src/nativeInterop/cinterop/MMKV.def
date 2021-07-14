@@ -1,0 +1,5 @@
+language = Objective-C
+package = com.tencent.mmkv
+headers = /Users/qiaoyuang/Downloads/project/KMMNews/shared/frameworks/MMKV.framework/Headers/MMKV.h
+libraryPaths = /Users/qiaoyuang/Downloads/project/KMMNews/shared/frameworks
+staticLibraries = MMKV.framework

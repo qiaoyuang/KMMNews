@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.qiaoyuang.kmmnews.shared.NetworkRequest
+import com.qiaoyuang.kmmnews.shared.ReadWriteUtil
 import com.qiaoyuang.kmmnews.shared.data.NewsSummary
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -40,6 +41,7 @@ class MainActivity : AppCompatActivity() {
                 recyclerView.adapter = NewsAdapter(this@MainActivity, it, lifecycle, lifecycleScope)
             }
         }
+        ReadWriteUtil.writeAll()
     }
 
     private class NewsAdapter(private val context: Context,

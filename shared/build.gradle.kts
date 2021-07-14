@@ -15,13 +15,17 @@ val ktorVersion = "1.5.1"
 
 kotlin {
     android()
-    ios {
+    iosX64 {
         binaries {
             framework {
                 baseName = "shared"
                 isStatic = true
                 freeCompilerArgs = listOf("-Xallocator=mimalloc")
             }
+        }
+        compilations["main"].cinterops.create("MMKV") {
+            defFile = project.file("src/nativeInterop/cinterop/MMKV.def")
+            packageName = "com.tencent.mmkv"
         }
     }
     sourceSets {
@@ -63,16 +67,17 @@ kotlin {
         val androidTest by getting {
             dependencies {
                 implementation(kotlin("test-junit"))
-                implementation("junit:junit:4.13")
+                implementation("junit:junit:4.13.2")
             }
         }
-        val iosMain by getting {
+        val iosX64Main by getting {
+            kotlin.srcDirs("src/iosMain/kotlin")
             dependencies {
                 // Ktor
                 implementation("io.ktor:ktor-client-ios:$ktorVersion")
             }
         }
-        val iosTest by getting
+        // val iosTest by getting
     }
 }
 
