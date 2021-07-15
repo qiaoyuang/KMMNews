@@ -14,6 +14,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.qiaoyuang.kmmnews.shared.MMKVInitialize
 import com.qiaoyuang.kmmnews.shared.NetworkRequest
 import com.qiaoyuang.kmmnews.shared.ReadWriteUtil
 import com.qiaoyuang.kmmnews.shared.data.NewsSummary
@@ -32,6 +33,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        MMKVInitialize()
         val recyclerView = findViewById<RecyclerView>(R.id.rv_news).apply {
             itemAnimator = DefaultItemAnimator()
             layoutManager = LinearLayoutManager(this@MainActivity)
@@ -41,7 +43,8 @@ class MainActivity : AppCompatActivity() {
                 recyclerView.adapter = NewsAdapter(this@MainActivity, it, lifecycle, lifecycleScope)
             }
         }
-        ReadWriteUtil.writeAll()
+        // ReadWriteUtil.writeAll()
+        // ReadWriteUtil.readAndPrintAll()
     }
 
     private class NewsAdapter(private val context: Context,

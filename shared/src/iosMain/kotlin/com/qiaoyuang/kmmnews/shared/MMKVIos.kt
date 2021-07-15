@@ -19,6 +19,8 @@ actual typealias MMKV = MMKV
 
 actual fun defaultMMKV(): MMKV = MMKV.defaultMMKV()!!
 
+fun MMKVInitialize() = MMKV.initialize()
+
 /**
  * 存值
  */

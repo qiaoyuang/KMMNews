@@ -1,5 +1,6 @@
 package com.qiaoyuang.kmmnews.shared
 
+import android.content.Context
 import com.tencent.mmkv.MMKV
 
 /**
@@ -9,6 +10,8 @@ import com.tencent.mmkv.MMKV
 actual typealias MMKV = MMKV
 
 actual fun defaultMMKV(): MMKV = MMKV.defaultMMKV()
+
+fun Context.MMKVInitialize() = MMKV.initialize(this)
 
 /**
  * 存值

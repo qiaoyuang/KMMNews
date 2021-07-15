@@ -8,13 +8,13 @@ import kotlin.native.concurrent.attach
 
 
 fun main() {
-    /*val testData = TestData(8)
+    val testData = TestData(8)
     val graph = DetachedObjectGraph(TransferMode.UNSAFE) { testData }
     CoroutineScope(Dispatchers.Default).launch {
         println("打印：${graph.attach().index++}")
     }
-    CFRunLoopRun()*/
-    testFunctionCall()
+    CFRunLoopRun()
+    //testFunctionCall()
 }
 
 data class TestData(var index: Int = 0)

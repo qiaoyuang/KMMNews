@@ -27,6 +27,9 @@ public class NewsSummaryFetcher: ObservableObject {
     
     init() {
         load()
+        MMKVIosKt.MMKVInitialize()
+        // ReadWriteUtil.init().writeAll()
+        // ReadWriteUtil.init().readAndPrintAll()
     }
     
     func load() {
